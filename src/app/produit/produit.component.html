@@ -1,0 +1,111 @@
+<h3>produits</h3>
+<div class="container">
+    <div class="row">
+        <div class='col-lg-7'>
+            <Table mdbTable striped="true">
+                <thead>
+                    <tr>
+                        <th>Reference</th>
+                        <th>Quantité</th>
+                        <th>Prix Unitaire</th>
+                        <th>
+
+                         <button  mdbBtn color="primary" mdbWavesEffect
+                                (click)="operation =  'add'; initProduit();">ADD</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let produit of produits">
+                        <td>{{produit.ref}}</td>
+                        <td>{{produit.quantite}}</td>
+                        <td>{{produit.prixUnitaire}}</td>
+                        <td>
+                            <button  mdbBtn color="info" mdbWavesEffect
+                                (click)="operation =  'edit'; selectedProduit=produit;">EDIT</button>
+                            <button  mdbBtn color="danger" mdbWavesEffect
+                                (click)="operation =  'remove'; selectedProduit=produit;">Supprimer</button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </Table>
+
+        </div>
+        <div class='col-lg-5'>
+            
+                    <mdb-card>
+                            <mdb-card-header class="info-color white-text text-center py-4">
+                                    <strong>
+                    {{operation == 'add' ? 'Ajouter Produit' : operation == 'edit' ? 'Modifier Produit' : operation == 'remove' ? 'Suppression Produit' :'' }}
+                </strong>
+                </mdb-card-header>
+
+                
+                
+                        <mdb-card-body class="px-lg-5">
+                    <div *ngIf="operation == 'add' || operation == 'edit'">
+                        <form [formGroup]="produitForm" style="color: #757575;">
+                            <div class="formGroup">
+                                <input mdbInput type="text" class="form-control" placeholder="Réference" formControlName="ref"
+                                    [(ngModel)]="selectedProduit.ref">
+                                    <br>
+                            </div>
+                            <div>
+                                <div class="alert alert-danger"
+                                    *ngIf="produitForm.controls['ref'].invalid && (produitForm.controls['ref'].touched || produitForm.controls['ref'].dirty)">
+                                    Réference requise
+                                </div>
+                            </div>
+                            <div class="formGroup">
+                                <input mdbInput type="text" class="form-control" placeholder="Quantité" formControlName="quantite"
+                                    [(ngModel)]="selectedProduit.quantite">
+                                    <br>
+                            </div>
+                            <div class="formGroup">
+                                <input mdbInput type="text" class="form-control" placeholder="Prix Unitaire" formControlName="prixUnitaire"
+                                    [(ngModel)]="selectedProduit.prixUnitaire">
+                                    <br>
+                            </div>
+                            <br>
+                            <Button mdbBtn color="info" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect" mdbWavesEffect
+                            type="submit" [disabled]="produitForm.pristine || produitForm.invalid"
+                                (click)="operation == 'add' ? addProduit() : operation == 'edit' ? updateProduit() : operation == 'remove' ? deleteProduit() :''">
+                                {{operation == 'add' ? 'Ajouter' : operation == 'edit' ? 'edit' : operation == 'remove' ? 'Supprimer' :'' }}
+                            </Button>
+
+
+                        </form>
+                    </div>
+                    <div *ngIf="operation == 'remove'">
+                        <p class="card-title">
+                            Référence : {{selectedProduit.ref}}
+                        </p>
+                        <p>
+                            Voulez-vous vraiment supprimer ce produit ?
+                        </p>
+                        
+
+                            <button mdbBtn color="info" outline="true" rounded="true" block="true" class="z-depth-0 my-4 waves-effect" mdbWavesEffect
+                            type="submit" [disabled]="!selectedProduit.ref"
+                            (click)="deleteProduit()">Confirmer</button>
+
+                    </div>
+                </mdb-card-body>
+                <div class="card-footer">
+
+
+                </div>
+                </mdb-card>
+            
+        </div>
+
+    </div>
+
+
+
+
+
+
+</div>

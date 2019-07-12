@@ -1,0 +1,44 @@
+<div>
+    <div class="pull-right">
+        <button class="btn btn-outline-primary btn-sm" >Log Out</button>
+        <template>
+          <div>
+              <mdb-btn gradient="peach" rounded>Peach gradient button</mdb-btn>
+              <mdb-btn gradient="purple" rounded>Purple gradient button</mdb-btn>
+              <mdb-btn gradient="blue" rounded>Blue gradient button</mdb-btn>
+              <mdb-btn gradient="aqua" rounded>Aqua gradient button</mdb-btn>
+          </div>
+      </template>
+       <script>
+        import { mdbBtn } from 'mdbvue';
+        export default {
+            name: 'ButtonPage',
+            components: {
+                mdbBtn
+            }
+        }
+    </script>
+      </div>
+      <div class="pull-left">
+          
+        </div>
+        <a href="" data-toggle="collapse" (click)="afficherSideBar($event)"><i class="fa fa-bars" aria-hidden="true"></i></a>
+        <hr>
+        <br>
+
+  <hr />
+  <nav class="navbar navbar-expand-sm bg-light">
+    <i class="glyphicon glyphicon-search"></i>
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#" >Link 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" >Link 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 3</a>
+      </li>
+    </ul>
+  </nav>
+</div>
